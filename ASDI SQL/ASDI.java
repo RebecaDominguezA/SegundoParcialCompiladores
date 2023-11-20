@@ -161,4 +161,45 @@ Pila miPila = new Pila();
             return;
         }
     }
+    // A3
+    private void A3(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "A3and"+ Y+ ".");
+        //FROM x A3, nos da: A3-> E
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("A3"))) {
+            
+            // Sacamos el nuevo Top de pila, lo guardamos y volvemos
+            //a meter para que no se pierda...
+            Y=miPila.operacion(2,""); //SACAMOS y actualizamos
+            miPila.operacion(1,Y); //metemos 
+
+            //AQUI mandamos a match porque no sabemos que hay debajo de pila actual, y a donde
+            //nos llevara... match lo resolvera.
+            match(palabra,Y);
+        }
+        //COMA x A3, nos da: A3-> E
+        else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("A3"))) {
+            
+            // Sacamos el nuevo Top de pila, lo guardamos y volvemos
+            //a meter para que no se pierda...
+            Y=miPila.operacion(2,""); //SACAMOS y actualizamos
+            miPila.operacion(1,Y); //metemos 
+
+            //AQUI mandamos a match porque no sabemos que hay debajo de pila actual, y a donde
+            //nos llevara... match lo resolvera.
+            match(palabra,Y);
+        }
+        //PUNTO x A3, nos da: A3-> . id
+        else if ((palabra.equals(String.valueOf(TipoToken.PUNTO)))&&(Y.equals("A3"))) {
+            miPila.operacion(1,"IDENTIFICADOR");
+            miPila.operacion(1,"PUNTO");
+            //Sabemos que palabra de entrada es PUNTO y lo ultimo de pila es PUNTO, match
+            match(palabra,"PUNTO");
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
