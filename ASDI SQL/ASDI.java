@@ -76,4 +76,26 @@ Pila miPila = new Pila();
             return;
         }
     }
+
+    // P
+    private void P(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "Pand"+ Y+ ".");
+        //ASTERISCO x P, nos da: P-> *
+        if ((palabra.equals(String.valueOf(TipoToken.ASTERISCO)))&&(Y.equals("P"))) {
+            miPila.operacion(1,"ASTERISCO");
+            //Sabemos que palabra de entrada es ASTERISCO y lo ultimo de pila es ASTERISCO, match
+            match(palabra,"ASTERISCO");
+        }
+        //IDENTIFICADOR x P, nos da: P-> A
+        else if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("P"))) {
+            miPila.operacion(1,"A");
+            A(palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
