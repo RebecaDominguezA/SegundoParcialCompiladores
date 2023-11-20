@@ -115,7 +115,24 @@ public class ASDR implements Parser{
             match(TipoToken.IDENTIFICADOR);
         }
     }
+    // T -> T2 T1
+    private void T(){
+        if(hayErrores)
+            return;
 
+        T2();
+        T1();
+    }
+    // T1 -> ,T | Ɛ
+    private void T1(){
+        if(hayErrores)
+            return;
+        if(preanalisis.tipo == TipoToken.COMA){
+            match(TipoToken.COMA);
+            T();
+        }
+        //else es el vacio
+    }
 
     private void match(TipoToken tt){
         if(preanalisis.tipo == tt){
