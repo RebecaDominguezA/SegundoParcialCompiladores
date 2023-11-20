@@ -114,4 +114,34 @@ Pila miPila = new Pila();
             return;
         }
     }
+
+    // A1
+    private void A1(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "A2and"+ Y+ ".");
+        //FROM x A1, nos da: A1-> E
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("A1"))) {
+            
+            // Sacamos el nuevo Top de pila, lo guardamos y volvemos
+            //a meter para que no se pierda...
+            Y=miPila.operacion(2,""); //SACAMOS y actualizamos
+            miPila.operacion(1,Y); //metemos 
+
+            //AQUI mandamos a match porque no sabemos que hay debajo de pila actual, y a donde
+            //nos llevara... match lo resolvera.
+            match(palabra,Y);
+        }
+        //COMA x A1, nos da: P-> , A
+        else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("A1"))) {
+            miPila.operacion(1,"A");
+            miPila.operacion(1,"COMA");
+            //Sabemos que palabra de entrada es COMA y lo ultimo de pila es COMA, match
+            match(palabra,"COMA");
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
