@@ -133,7 +133,21 @@ public class ASDR implements Parser{
         }
         //else es el vacio
     }
+// T2 -> ID T3
+    private void T2(){
+        if(hayErrores)
+            return;
+        if(preanalisis.tipo == TipoToken.IDENTIFICADOR){
+            match(TipoToken.IDENTIFICADOR);
+            T3();
+        }
+        else{
+            hayErrores = true;
+            System.out.println(x:"Se esperaba 'identificador'");
+        }
+    }
 
+        
     private void match(TipoToken tt){
         if(preanalisis.tipo == tt){
             i++;
