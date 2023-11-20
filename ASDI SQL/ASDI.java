@@ -98,4 +98,20 @@ Pila miPila = new Pila();
             return;
         }
     }
+    // A
+    private void A(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "Aand"+ Y+ ".");
+        //IDENTIFICADOR x A, nos da: A-> A2 A1
+        if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("A"))) {
+            miPila.operacion(1,"A1");
+            miPila.operacion(1,"A2");
+            A2(palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
