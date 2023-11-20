@@ -47,4 +47,33 @@ Pila miPila = new Pila();
             return;
         }
     }
+    // D 
+    private void D(String palabra){
+        
+        //Consumimos un elemento de la pila,
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "Dand"+ Y+ ".");
+        //DISTINCT x D, nos da: D-> distinct P 
+        if((palabra.equals(String.valueOf(TipoToken.DISTINCT)))&&(Y.equals("D"))){
+            // y agregamos su produccion corresponciente.
+            miPila.operacion(1,"P"); 
+            miPila.operacion(1,"DISTINCT"); 
+            match(palabra, "DISTINCT");
+        }
+        //ASTERISCO x D, nos da: D-> P
+        else if ((palabra.equals(String.valueOf(TipoToken.ASTERISCO)))&&(Y.equals("D"))) {
+            miPila.operacion(1,"P");
+            P(palabra);
+        }
+        //IDENTIFICADOR x D, nos da: D-> P
+        else if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("D"))) {
+            miPila.operacion(1,"P");
+            P(palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
