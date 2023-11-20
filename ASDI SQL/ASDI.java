@@ -144,4 +144,21 @@ Pila miPila = new Pila();
             return;
         }
     }
+    // A2
+    private void A2(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "A1and"+ Y+ ".");
+        //IDENTIFICADOR x A2, nos da: A2-> id A3
+        if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("A2"))) {
+            miPila.operacion(1,"A3");
+            miPila.operacion(1,"IDENTIFICADOR");
+            //Sabemos que palabra de entrada es IDENTIFICADOR y lo ultimo de pila es IDENTIFICADOR, match
+            match(palabra,"IDENTIFICADOR");
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
