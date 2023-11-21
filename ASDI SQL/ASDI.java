@@ -176,7 +176,7 @@ Pila miPila = new Pila();
             //AQUI mandamos a match porque no sabemos que hay debajo de pila actual, y a donde
             //nos llevara... match lo resolvera.
             match(palabra,Y);
-        }
+        } 
         //COMA x A3, nos da: A3-> E
         else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("A3"))) {
             
@@ -195,6 +195,22 @@ Pila miPila = new Pila();
             miPila.operacion(1,"PUNTO");
             //Sabemos que palabra de entrada es PUNTO y lo ultimo de pila es PUNTO, match
             match(palabra,"PUNTO");
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
+    // T 
+    private void T(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        System.out.println(palabra+ "Tand"+ Y+ ".");
+        //IDENTIFICADOR x T, nos da: T-> T2 T1
+        if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("T"))) {
+            miPila.operacion(1,"T1");
+            miPila.operacion(1,"T2");
+            T2(palabra);
         }
         else{
             hayErrores = true;
