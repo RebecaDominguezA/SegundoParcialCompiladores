@@ -302,4 +302,62 @@ Pila miPila = new Pila();
             return;
         }
     }
+    private void match(String palabra,String PILA){
+        System.out.println(palabra+ "=="+ PILA);
+        if((palabra.equals("EOF"))&&(PILA.equals("EOF"))){
+            miPila.operacion(0,""); // Quitamos elemento de tope pila (pop)
+            this.LINEA=QuitarPrimerPalabra.quitar(LINEA);//Quitamos primer palabra de ENTRADA actual
+
+            //La pila y la entrada quedan vacias. Validacion-->
+
+        }
+        else if(palabra.equals(PILA)){
+            //Sabemos que lo primero de la Entrada y de la Pila son iguales. Se eliminan
+            this.LINEA=QuitarPrimerPalabra.quitar(LINEA);//Quitamos primer palabra de ENTRADA actual
+            miPila.operacion(0,""); // Quitamos elemento de tope pila (pop)
+            palabra = ObtenerPrimerPalabra.obtener(LINEA);
+            // Sacamos el nuevo Top de pila, lo guardamos y volvemos
+            //a meter para que no se pierda...
+            PILA=miPila.operacion(2,""); //SACAMOS y actualizamos
+            miPila.operacion(1,PILA); //metemos 
+
+            match(palabra, PILA);
+        }
+        else{
+            if (PILA.equals("Q")){
+                Q(palabra);
+            }
+            else if(PILA.equals("D")){
+                D(palabra);
+            }
+            else if(PILA.equals("P")){
+                P(palabra);
+            }
+            else if(PILA.equals("A1")){
+                A1(palabra);
+            }
+            else if(PILA.equals("A2")){
+                A2(palabra);
+            }
+            else if(PILA.equals("A3")){
+                A3(palabra);
+            }
+            else if(PILA.equals("T")){
+                T(palabra);
+            }
+            else if(PILA.equals("T1")){
+                T1(palabra);
+            }
+            else if(PILA.equals("T2")){
+                T2(palabra);
+            }
+            else if(PILA.equals("T3")){
+                T3(palabra);
+            }else{
+                hayErrores = true;
+                System.out.println("Se esperaba un estado.");
+            }
+        }
+
+    }
 }
