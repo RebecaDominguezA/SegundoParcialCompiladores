@@ -179,5 +179,37 @@ public class ASAI implements Parser{
             return;
         }
     }
+     // Estado E6
+    private void E6(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A3and"+ Y+ ".");
+        //FROM x 6, nos da: 6-> R4
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("6"))) {
+            reduce(4);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
+    // Estado E7
+    private void E7(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A3and"+ Y+ ".");
+        //FROM x 7, nos da: 7-> R5
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("7"))) {
+            reduce(5);
+        }
+        //COMA x 7, nos da: 7-> S12
+        else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("7"))){
+            SHIFT("12",palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
 
