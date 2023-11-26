@@ -211,5 +211,50 @@ public class ASAI implements Parser{
             return;
         }
     }
+      // Estado E8
+    private void E8(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A3and"+ Y+ ".");
+        //FROM x 8, nos da: 8-> R7
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("8"))) {
+            reduce(7);
+        }
+        //COMA x 8, nos da: 8-> R7
+        else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("8"))){
+            reduce(7);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
+    //Estado E9
+    private void E9(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "Tand"+ Y+ ".");
+        if((Memoria.equals("A2"))&&(Y.equals("9"))){
+            Memoria="";
+            miPila.operacion(1, "13");
+            quien_sigue("13");
+        }
+        //COMA x 9, nos da: 9-> R10
+        else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("9"))){
+            reduce(10);
+        }
+        //PUNTO x 9, nos da: 9-> S14
+        else if ((palabra.equals(String.valueOf(TipoToken.PUNTO)))&&(Y.equals("9"))){
+            SHIFT("14",palabra);
+        }
+        //FROM x 9, nos da: 9-> R10
+        else if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("9"))){
+            reduce(10);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
 
