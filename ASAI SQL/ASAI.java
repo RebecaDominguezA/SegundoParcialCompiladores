@@ -672,6 +672,78 @@ public class ASAI implements Parser{
 
             quien_sigue(anterior);
         }
+        //Reduce 11
+        else if(metodo==11) {
+            //   3 2  1
+            //T->T , T1
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            String tercero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("T1"))&&(segundo.equals("COMA"))&&(tercero.equals("T"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                miPila.operacion(0,""); //Eliminamos elemento de pila 3
+                Pila_Acarreo.operacion(1, "T");//Aplicamos reduce, se convierte en T
+                this.Memoria="T";
+                anterior=miPila.operacion(2, "");//Sacamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 12
+        else if(metodo==12) {
+            //    1
+            //T->T1
+            String primero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("T1"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                Pila_Acarreo.operacion(1, "T");//Aplicamos reduce, se convierte en T
+                this.Memoria="T";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 13
+        else if(metodo==13) {
+            //    2  1 
+            //T1->id T2
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("T2"))&&(segundo.equals("IDENTIFICADOR"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                Pila_Acarreo.operacion(1, "T1");//Aplicamos reduce, se convierte en T1
+                this.Memoria="T1";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 14
+        else if(metodo==14) {
+            //      1
+            //T2-> id
+            String primero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("IDENTIFICADOR"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                Pila_Acarreo.operacion(1, "T2");//Aplicamos reduce, se convierte en T2
+                this.Memoria="T2";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 15
+        else if(metodo==15) {
+            //Al vacio le agregamos la prod.
+            //T2->E
+            Pila_Acarreo.operacion(1, "T2");//Aplicamos reduce, se convierte en T2
+            this.Memoria="T2";
+            anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+
+            quien_sigue(anterior);
+        }
       
     }
 }
