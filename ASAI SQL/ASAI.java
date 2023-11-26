@@ -364,5 +364,51 @@ public class ASAI implements Parser{
             return;
         }
     }
+    // Estado E16
+    private void E16(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A2and"+ Y+ ".");
+        //COMA x 16, nos da: 16-> R12
+        if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("16"))){
+            reduce(12);
+        }
+        //EOF x 16, nos da: 16-> R12
+        else if ((palabra.equals(String.valueOf(TipoToken.EOF)))&&(Y.equals("16"))){
+            reduce(12);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
+    // Estado E17
+    private void E17(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A2and"+ Y+ ".");
+        //T2 x 17, nos da: 17-> E21
+        if((Memoria.equals("T2"))&&(Y.equals("17"))){
+            Memoria="";
+            miPila.operacion(1, "21");
+            quien_sigue("21");
+        }
+        //IDENTIFICADOR x 17, nos da: 17-> S19
+        else if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("17"))){
+            SHIFT("22",palabra);
+        }
+        //COMA x 17, nos da: 17-> R15
+        else if ((palabra.equals(String.valueOf(TipoToken.COMA)))&&(Y.equals("17"))){
+            reduce(15);
+        }
+        //EOF x 17, nos da: 17-> R15
+        else if ((palabra.equals(String.valueOf(TipoToken.EOF)))&&(Y.equals("17"))){
+            reduce(15);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
 
