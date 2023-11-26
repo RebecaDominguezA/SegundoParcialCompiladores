@@ -521,6 +521,157 @@ public class ASAI implements Parser{
         }
     }
     private void reduce(int metodo){
+       String anterior="";
+        if (metodo==1) {
+            //      4   3  2   1
+            //Q->select D from T
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            String tercero=Pila_Acarreo.operacion(2, "");
+            String cuarto=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("T"))&&(segundo.equals("FROM"))&&(tercero.equals("D"))&&(cuarto.equals("SELECT"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                miPila.operacion(0,""); //Eliminamos elemento de pila 3
+                miPila.operacion(0,""); //Eliminamos elemento de pila 4
+                Pila_Acarreo.operacion(1, "Q");//Aplicamos reduce, se convierte en Q
+                this.Memoria="Q";
+                anterior=miPila.operacion(2, "");//Sacamos
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 2
+        else if(metodo==2) {
+            //       2    1
+            //D->DISTINCT P
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("P"))&&(segundo.equals("DISTINCT"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                Pila_Acarreo.operacion(1, "D");//Aplicamos reduce, se convierte en D
+                this.Memoria="D";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+                
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 3
+        else if(metodo==3) {
+            //    1
+            //D->P
+            String primero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("P"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                Pila_Acarreo.operacion(1, "D");//Aplicamos reduce, se convierte en D
+                this.Memoria="D";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+                
+                quien_sigue(anterior);
+            }
+            
+        }
+        //Reduce 4
+        else if(metodo==4) {
+            //   1
+            //P->*
+            String primero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("ASTERISCO"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                Pila_Acarreo.operacion(1, "P");//Aplicamos reduce, se convierte en P
+                this.Memoria="P";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 5
+        else if(metodo==5) {
+            //   1
+            //P->A
+            String primero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("A"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                Pila_Acarreo.operacion(1, "A");//Aplicamos reduce, se convierte en A
+                this.Memoria="A";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 6
+        else if(metodo==6) {
+            //   3 2  1
+            //A->A , A1
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            String tercero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("A1"))&&(segundo.equals("COMA"))&&(tercero.equals("A"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                miPila.operacion(0,""); //Eliminamos elemento de pila 3
+                Pila_Acarreo.operacion(1, "A");//Aplicamos reduce, se convierte en A
+                this.Memoria="A";
+                anterior=miPila.operacion(2, "");//Sacamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 7
+        else if(metodo==7) {
+            //    1
+            //A->A1
+            String primero=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("A1"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                Pila_Acarreo.operacion(1, "A");//Aplicamos reduce, se convierte en A
+                this.Memoria="A";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 8
+        else if(metodo==8) {
+            //    2  1
+            //A1->id A2
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("A2"))&&(segundo.equals("IDENTIFICADOR"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                Pila_Acarreo.operacion(1, "A1");//Aplicamos reduce, se convierte en A1
+                this.Memoria="A1";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 9
+        else if(metodo==9) {
+            //    2  1
+            //A2-> . id
+            String primero=Pila_Acarreo.operacion(2, "");
+            String segundo=Pila_Acarreo.operacion(2, "");
+            if ((primero.equals("IDENTIFICADOR"))&&(segundo.equals("PUNTO"))){
+                miPila.operacion(0,""); //Eliminamos elemento de pila 1
+                miPila.operacion(0,""); //Eliminamos elemento de pila 2
+                Pila_Acarreo.operacion(1, "A2");//Aplicamos reduce, se convierte en A2
+                this.Memoria="A2";
+                anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+    
+                quien_sigue(anterior);
+            }
+        }
+        //Reduce 10
+        else if(metodo==10) {
+            //Al vacio le agregamos la prod.
+            //A2->E
+            Pila_Acarreo.operacion(1, "A2");//Aplicamos reduce, se convierte en A2
+            this.Memoria="A2";
+            anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
+
+            quien_sigue(anterior);
+        }
       
     }
 }
