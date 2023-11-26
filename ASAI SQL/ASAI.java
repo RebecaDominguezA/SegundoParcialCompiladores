@@ -128,5 +128,56 @@ public class ASAI implements Parser{
             System.out.println("Error sintactico.");
             return;
         }
+    }
+    // Estado E4
+    private void E4(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A1and"+ Y+ ".");
+        //P x 4, nos da: E4 -> E11
+        if((Memoria.equals("P"))&&(Y.equals("4"))){
+            Memoria="";
+            miPila.operacion(1, "11");
+            quien_sigue("11");
+        }
+        //A x 4, nos da: E4 -> E7
+        else if((Memoria.equals("A"))&&(Y.equals("4"))){
+            Memoria="";
+            miPila.operacion(1, "7");
+            quien_sigue("7");
+        }
+        //A1 x 4, nos da: E4 -> E8
+        else if((Memoria.equals("A1"))&&(Y.equals("4"))){
+            Memoria="";
+            miPila.operacion(1, "8");
+            quien_sigue("8");
+        }
+        //IDENTIFICADOR x 4, nos da: 4-> S9
+        else if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("4"))) {
+            SHIFT("9",palabra);
+        }
+        //ASTERISCO x 4, nos da: 4-> S6
+        else if ((palabra.equals(String.valueOf(TipoToken.ASTERISCO)))&&(Y.equals("4"))) {
+            SHIFT("6",palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
+    // Estado E5
+    private void E5(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "A2and"+ Y+ ".");
+        //FROM x 5, nos da: 5-> R3
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("5"))) {
+            reduce(3);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
 }
 
