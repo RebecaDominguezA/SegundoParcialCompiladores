@@ -746,5 +746,88 @@ public class ASAI implements Parser{
         }
       
     }
+  private void SHIFT(String estado,String palabra){
+        //this.Acarreo=Acarreo+(ObtenerPrimerPalabra.obtener(LINEA))+" ";//Se agrega acarreo
+        Pila_Acarreo.operacion(1,palabra);
+        this.LINEA=QuitarPrimerPalabra.quitar(LINEA);//Quitamos primer palabra de ENTRADA actual
+        miPila.operacion(1,estado);//Agregamos elemento a la pila
+        quien_sigue(estado);
+    }
+    private void quien_sigue(String estado){
+        if (estado.equals("0")){
+            E0((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("1")){
+            E1((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("2")){
+            E2((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("3")){
+            E3((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("4")){
+            E4((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("5")){
+            E5((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("6")){
+            E6((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("7")){
+            E7((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("8")){
+            E8((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("9")){
+            E9((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("10")){
+            E10((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("11")){
+            E11((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("12")){
+            E12((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("13")){
+            E13((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("14")){
+            E14((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("15")){
+            E15((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("16")){
+            E16((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("17")){
+            E17((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("18")){
+            E18((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("19")){
+            E19((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("20")){
+            E20((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("21")){
+            E21((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("22")){
+            E22((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+        else if(estado.equals("23")){
+            E23((ObtenerPrimerPalabra.obtener(LINEA)));
+        }
+    }
+}
+
 }
 
