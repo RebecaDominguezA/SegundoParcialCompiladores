@@ -746,7 +746,7 @@ public class ASAI implements Parser{
         }
       
     }
-  private void SHIFT(String estado,String palabra){
+    private void SHIFT(String estado,String palabra){
         //this.Acarreo=Acarreo+(ObtenerPrimerPalabra.obtener(LINEA))+" ";//Se agrega acarreo
         Pila_Acarreo.operacion(1,palabra);
         this.LINEA=QuitarPrimerPalabra.quitar(LINEA);//Quitamos primer palabra de ENTRADA actual
@@ -827,7 +827,5 @@ public class ASAI implements Parser{
             E23((ObtenerPrimerPalabra.obtener(LINEA)));
         }
     }
-}
-
 }
 
