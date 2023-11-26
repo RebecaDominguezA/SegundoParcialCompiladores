@@ -520,5 +520,8 @@ public class ASAI implements Parser{
             return;
         }
     }
+    private void reduce(int metodo){
+      
+    }
 }
 
