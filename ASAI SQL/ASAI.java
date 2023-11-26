@@ -70,6 +70,63 @@ public class ASAI implements Parser{
             return;
         }
     }
-  
+   // Estado E2
+    private void E2(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "Pand"+ Y+ ".");
+        //D x 2, nos da: E2 -> E3
+        if((Memoria.equals("D"))&&(Y.equals("2"))){
+            Memoria="";
+            miPila.operacion(1, "3");
+            quien_sigue("3");
+        }
+        //P x 2, nos da: E2 -> E5
+        else if((Memoria.equals("P"))&&(Y.equals("2"))){
+            Memoria="";
+            miPila.operacion(1, "5");
+            quien_sigue("5");
+        }
+        //A x 2, nos da: E2 -> E7
+        else if((Memoria.equals("A"))&&(Y.equals("2"))){
+            Memoria="";
+            miPila.operacion(1, "7");
+            quien_sigue("7");
+        }
+        //A1 x 2, nos da: E2 -> E8
+        else if((Memoria.equals("A1"))&&(Y.equals("2"))){
+            Memoria="";
+            miPila.operacion(1, "8");
+            quien_sigue("8");
+        }
+        //IDENTIFICADOR x 2, nos da: 2-> S9
+        else if ((palabra.equals(String.valueOf(TipoToken.IDENTIFICADOR)))&&(Y.equals("2"))) {
+            SHIFT("9",palabra);
+        }
+        //ASTERISCO x 2, nos da: 2-> S6
+        else if ((palabra.equals(String.valueOf(TipoToken.ASTERISCO)))&&(Y.equals("2"))) {
+            SHIFT("6",palabra);
+        }
+        else if ((palabra.equals(String.valueOf(TipoToken.DISTINCT)))&&(Y.equals("2"))) {
+            SHIFT("4",palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
+    }
+    // Estado E3
+    private void E3(String palabra){
+        String Y=miPila.operacion(2,""); // Quitar un elemento (pop) y recibirlo
+        //System.out.println(palabra+ "Aand"+ Y+ ".");
+        //FROM x 3, nos da: 3-> S10
+        if ((palabra.equals(String.valueOf(TipoToken.FROM)))&&(Y.equals("3"))) {
+            SHIFT("10",palabra);
+        }
+        else{
+            hayErrores = true;
+            System.out.println("Error sintactico.");
+            return;
+        }
 }
 
