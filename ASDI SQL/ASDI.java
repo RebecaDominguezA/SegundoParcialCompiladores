@@ -333,6 +333,9 @@ Pila miPila = new Pila();
             else if(PILA.equals("P")){
                 P(palabra);
             }
+            else if(PILA.equals("A")){
+                A(palabra);
+            }
             else if(PILA.equals("A1")){
                 A1(palabra);
             }
