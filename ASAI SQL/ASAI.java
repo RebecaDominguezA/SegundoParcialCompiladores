@@ -591,8 +591,8 @@ public class ASAI implements Parser{
             String primero=Pila_Acarreo.operacion(2, "");
             if ((primero.equals("A"))){
                 miPila.operacion(0,""); //Eliminamos elemento de pila 1
-                Pila_Acarreo.operacion(1, "A");//Aplicamos reduce, se convierte en A
-                this.Memoria="A";
+                Pila_Acarreo.operacion(1, "P");//Aplicamos reduce, se convierte en A
+                this.Memoria="P";
                 anterior=miPila.operacion(2, "");//Sacamos ELEMENTO de pila existente, lo guardamos
     
                 quien_sigue(anterior);
